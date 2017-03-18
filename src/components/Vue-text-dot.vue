@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{pMsg}}</p>
+    <div class="text-dot">{{pMsg}}</div>
   </div>
 </template>
 
@@ -9,7 +9,8 @@ export default {
   name: 'vue-text-dot',
   props: {
     line: { type: Number, default: 3 },
-    msg: { type: String, required: true }
+    msg: { type: String, required: true },
+    webfont: { type: Boolean, default: true }
   },
   data () {
     return {
@@ -22,7 +23,7 @@ export default {
   },
   methods: {
     dot () {
-      let dom = this.$el.querySelector('p')
+      let dom = this.$el.querySelector('div')
       let height = parseInt(window.getComputedStyle(dom)['height'])
       let lineHeight
       if (window.getComputedStyle(dom)['line-height'] === 'normal') {
@@ -43,6 +44,14 @@ export default {
         dom.innerHTML = this.pMsg
         height = parseInt(window.getComputedStyle(dom)['height'])
       }
+
+      // If a webfont was used cut the string once more just to be sure
+      // There is a known problem with the calculation of asnyc loaded font height
+      if(this.isDot && this.webfont) {
+        this.pMsg = this.pMsg.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/,"...")
+        dom.innerHTML = this.pMsg
+      }
+
       if (this.isDot) {
         this.$emit('isDot')
       }

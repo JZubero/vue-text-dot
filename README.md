@@ -22,6 +22,7 @@ import dot from 'vue-text-dot'
 | ---:| --- | --- | --- | --- |
 | msg | String | true | |text in dot |
 | line | Number | false | 1 | the number of rows that you want to show |
+| webfont | Boolean | false | true | Flag is a webfont was used |
 
 ## Tips
  You'd better set the class for component including 'line-height'
