@@ -22,9 +22,10 @@ export default {
 
     // If a webfont was used cut the string once more just to be sure
     // There is a known problem with the calculation of asnyc loaded font height
-    setTimeout(() => {
-      this.dot();
-    });
+    if(this.webfont)
+	    setTimeout(() => {
+	      this.dot();
+	    });
   },
   methods: {
     dot () {
