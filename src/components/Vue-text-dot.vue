@@ -19,7 +19,12 @@ export default {
     }
   },
   mounted () {
-    this.dot()
+
+    // If a webfont was used cut the string once more just to be sure
+    // There is a known problem with the calculation of asnyc loaded font height
+    setTimeout(() => {
+      this.dot();
+    });
   },
   methods: {
     dot () {
@@ -43,13 +48,6 @@ export default {
         this.pMsg = this.pMsg.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/,"...")
         dom.innerHTML = this.pMsg
         height = parseInt(window.getComputedStyle(dom)['height'])
-      }
-
-      // If a webfont was used cut the string once more just to be sure
-      // There is a known problem with the calculation of asnyc loaded font height
-      if(this.isDot && this.webfont) {
-        this.pMsg = this.pMsg.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/,"...")
-        dom.innerHTML = this.pMsg
       }
 
       if (this.isDot) {
