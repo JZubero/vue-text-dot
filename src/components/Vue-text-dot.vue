@@ -25,7 +25,7 @@
             if (this.webfont)
                 setTimeout(() => {
                     this.dot();
-                }, 100);
+                }, 200);
         },
         methods: {
             getHeight: (elem) => {
