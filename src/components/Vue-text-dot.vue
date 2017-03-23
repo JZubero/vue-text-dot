@@ -22,10 +22,14 @@
             
             // If a webfont was used cut the string once more just to be sure
             // There is a known problem with the calculation of asnyc loaded font height
-            if (this.webfont)
+            if (this.webfont && window.webfontLoaded !== true)
                 setTimeout(() => {
                     this.dot();
+
+                    // Hack for the moment. TODO: Implement font loaded detection
+                    window.webfontLoaded = true;
                 }, 200);
+            else this.dot();
         },
         methods: {
             getHeight: (elem) => {
