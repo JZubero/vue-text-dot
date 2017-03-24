@@ -58,7 +58,6 @@
                     height = parseInt(window.getComputedStyle(dom).getPropertyValue('height'));
                 }
                 
-                console.log('-');
                 if (this.isDot) {
                     this.$emit('isDot')
                 }
