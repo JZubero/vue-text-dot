@@ -19,7 +19,7 @@
             }
         },
         mounted () {
-            
+
             // If a webfont was used cut the string once more just to be sure
             // There is a known problem with the calculation of asnyc loaded font height
             if (this.webfont && window.webfontLoaded !== true)
@@ -44,24 +44,30 @@
             dot () {
                 let dom = this.$el.querySelector('div');
                 let {height, lineHeight} = this.getHeight(dom);
-                
+
                 while (height > lineHeight * this.line * 3) {
                     this.isDot = true
                     this.pMsg = this.pMsg.substring(0, this.pMsg.length / 2)
-                    dom.innerHTML = this.pMsg
+                    this.updateDOM();
                     height = parseInt(window.getComputedStyle(dom).getPropertyValue('height'));
                 }
                 while (height > lineHeight * this.line) {
                     this.isDot = true
                     this.pMsg = this.pMsg.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "...")
-                    dom.innerHTML = this.pMsg
+                    this.updateDOM();
                     height = parseInt(window.getComputedStyle(dom).getPropertyValue('height'));
                 }
-                
+
                 if (this.isDot) {
                     this.$emit('isDot')
                 }
             },
+            updateDOM() {
+                let dom = this.$el.querySelector('div');
+
+                while(dom.firstChild) dom.removeChild(dom.firstChild);
+                dom.appendChild(document.createTextNode(this.pMsg));
+            }
         }
     }
 </script>
