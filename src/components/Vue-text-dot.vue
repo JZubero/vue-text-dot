@@ -38,7 +38,8 @@
                         elem.clientHeight,
                         elem.scrollHeight,
                         elem.offsetHeight),
-                    lineHeight: Math.ceil(parseFloat(window.getComputedStyle(elem).getPropertyValue('line-height')))
+                    // Manually increase the line-height by 1px - this fixes wrong calculated height in safari
+                    lineHeight: Math.ceil(parseFloat(window.getComputedStyle(elem).getPropertyValue('line-height'))) + 1
                 };
             },
             dot () {
