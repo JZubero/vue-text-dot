@@ -31,6 +31,12 @@
                 }, 200);
             else this.dot();
         },
+        watch: {
+            msg: function () {
+                this.pMsg = this.msg;
+                this.dot();
+            }
+        },
         methods: {
             getHeight: (elem) => {
                 return {
@@ -38,8 +44,7 @@
                         elem.clientHeight,
                         elem.scrollHeight,
                         elem.offsetHeight),
-                    // Manually increase the line-height by 1px - this fixes wrong calculated height in safari
-                    lineHeight: Math.ceil(parseFloat(window.getComputedStyle(elem).getPropertyValue('line-height'))) + 1
+                    lineHeight: Math.ceil(parseFloat(window.getComputedStyle(elem).getPropertyValue('line-height')))
                 };
             },
             dot () {
