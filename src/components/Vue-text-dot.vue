@@ -59,7 +59,7 @@
                 }
                 while (height > lineHeight * this.line) {
                     this.isDot = true
-                    this.pMsg = this.pMsg.replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "...")
+                    this.pMsg = this.pMsg.replace(/(\s)*([a-zA-Z0-9_]+|\W)(\.\.\.)?$/, "...")
                     this.updateDOM();
                     height = parseInt(window.getComputedStyle(dom).getPropertyValue('height'));
                 }
